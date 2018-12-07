@@ -1,0 +1,10 @@
+{% extends "../base.html" %}
+
+{% block content %}
+<form action="file" method="POST", enctype="multipart/form-data">
+        {{ formset.as_p }}
+
+        {% csrf_token %}
+        <button type="submit">送信</button>
+</form>
+{%endblock%}

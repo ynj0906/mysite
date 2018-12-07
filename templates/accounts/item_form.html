@@ -1,0 +1,49 @@
+{% extends "../base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{{ form.certifications.errors }}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center">データ入力</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="float-right">
+                <a class="btn btn-outline-secondary" href="{% url 'accounts:index' %}">戻る</a>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+             <a href="{% url 'accounts:add_tag' %}">タグ追加</a>
+{% for tag in item_list %}
+ <a href="{% url 'accounts:tag' tag.pk %}">{{ tag }}</a>
+{% endfor %}
+
+
+            <form method="post" enctype="multipart/form-data" id="myform">
+                <button class="btn btn-primary">保存</button>
+
+
+
+                 {% csrf_token %}
+                {%crispy form%}
+
+                
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="float-right">
+                <a class="btn btn-outline-secondary" href="{% url 'accounts:index' %}">戻る</a>
+                <a class="btn btn-outline-secondary save" href="#">保存</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
