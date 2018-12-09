@@ -16,8 +16,7 @@ class TagForm(forms.ModelForm):
 
 
 class ItemForm(forms.ModelForm):
-    class FileFieldForm(forms.Form):
-        file_field = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
+
 
 
     class Meta:
@@ -30,15 +29,3 @@ class ItemForm(forms.ModelForm):
                     'memo': forms.Textarea(attrs={'rows':4}),
 
                   }
-    def save(self, commit=True):
-            # 全てのアップロードファイルを取得
-            upload_files = self.files.getlist('file')
-
-            # このモデルフォーム自体は、あくまで1つのモデルインスタンスと紐づきます。
-            # アップロードされたファイルのうち、どれか1つをフォームに紐づけつつ
-            # 残りのファイルは今ここでUploadFile.objects.createで作成する。
-            self.instance.file = upload_files[0]
-            other_files = upload_files[1:]
-            for file in other_files:
-                Item.objects.create(file=file)  # 残りのファイル作成
-            return super().save(commit)

@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from . import views
 from django.urls import path, include, re_path
-from .views import ItemFilterView, ItemDetailView, ItemCreateView, ItemUpdateView, ItemDeleteView, AddTagView, TagView,FileFieldView
+from .views import ItemFilterView, ItemDetailView, ItemCreateView, ItemUpdateView, ItemDeleteView, AddTagView, TagView
 app_name = "accounts"
 
 urlpatterns =[
@@ -9,7 +9,7 @@ urlpatterns =[
     path('', ItemFilterView.as_view(), name='index'),
     path('create', ItemCreateView.as_view(), name='create'),
     path('detail/<int:pk>/', ItemDetailView.as_view(), name='detail'),
-    path("upload/", FileFieldView.as_view(), name="upload"),
+
 
     path('update/<int:pk>/', ItemUpdateView.as_view(), name='update'),
     # 削除画面

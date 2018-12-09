@@ -18,25 +18,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 #from django.views.generic import Createview
 
 # Create your views here.
-class FileFieldView(FormView):
-    model = Item
-    form_class = ItemForm
-    template_name = 'accounts/upload_form.html'  # Replace with your template.
-    success_url = '...'  # Replace with your URL or reverse().
-
-    def post(self, request, *args, **kwargs):
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        files = request.FILES.getlist('file_field')
-        if form.is_valid():
-            for i in files:
-                ...  # Do something with each file.
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
-
-
-
 class SignupView(CreateView):
     form_class = SignupForm
     success_url = reverse_lazy('login')
@@ -111,16 +92,6 @@ class ItemCreateView(LoginRequiredMixin,CreateView):
     form_class = ItemForm
     template_name = "accounts/item_form.html"
     success_url = reverse_lazy("accounts:index")
-
-    def form_valid(self, form):
-        #commt=False
-        main_file = form.save(commit=False)
-
-        # commit=Trueで保存する
-        for other_file in main_file.others:
-            other_file.save()
-        main_file.save()
-
 
 create = ItemCreateView.as_view()
 
