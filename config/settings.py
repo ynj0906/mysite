@@ -25,7 +25,7 @@ SECRET_KEY = 'ajpa(^zjt16zxs9x0%96ig3v5465@)lr@)2-v1z=#bw9_!@5v5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
