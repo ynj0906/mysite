@@ -1,6 +1,17 @@
 {% extends "../base.html" %}
 {% block content %}
+
 <div class="container">
+    <div class="col-sm-9 col-md-9  col-sm-offset-2">
+    <ul class="breadcrumb">
+        <li>
+        <a href="{%url 'accounts:index'%}">タイトル</a>/
+        </li>
+        <li class=" active">
+        アイテム一覧
+        </li>
+    </ul>
+</div>
     <h2 class="text-center">詳細表示</h2>
     <div class="row">
         <div class="col-12">

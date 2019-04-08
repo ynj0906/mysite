@@ -29,3 +29,4 @@ class ItemForm(forms.ModelForm):
                     'memo': forms.Textarea(attrs={'rows':4}),
 
                   }
+

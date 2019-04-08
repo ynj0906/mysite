@@ -16,9 +16,9 @@ urlpatterns =[
     path('delete/<int:pk>/', ItemDeleteView.as_view(), name='delete'),
     path('add_tag', AddTagView.as_view(), name='add_tag'),
     path('tag/<int:pk>', TagView.as_view(), name='tag'),
-    path('signup/', views.SignupView.as_view(), name='signup')
+    path('signup/', views.SignupView.as_view(), name='signup'),
 
-    #path("hello/", views.Hello.as_view(), name="hello"),
+    path("hello/", views.Hello.as_view(), name="hello"),
 
 
     #url(r"^/%", views.LoginView.as_view(), name="context")

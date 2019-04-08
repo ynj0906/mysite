@@ -1,123 +1,143 @@
 {% extends "../base.html" %}
-
-{% block content %} 
+{% block content %}
 {% load crispy_forms_tags %}
-かか
-<div class="container">
-    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">検索条件</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form id="filter" method="get">
-                    <div class="modal-body">
-                        {{filter.form|crispy}}
-                    </div>
-                    <div class="modal-footer">
-                    <a class="btn btn-outline-secondary" data-dismiss="modal">戻る</a>
-                    <button type="submit" class="btn btn-outline-secondary" form="filter">検索い</button>
-                </div>
-                </form>
-
-            </div>
+<nav class="navbar navbar-inverse navbar-fixed-top bg-dark">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="">タイトル</a>
         </div>
     </div>
-    か
- <!--<img src="{{ item.photo.url }}" width="20%">-->
+</nav>
 
+
+<div class="container-fluid">
     <div class="row">
-        <div class="col-12">
-            <a class="btn btn-secondary filtered" style="visibility:hidden" href="/?page=1">検索を解除</a>
-            <div class="float-right">
-                <a class="btn btn-outline-secondary" href="{% url 'accounts:create' %}">新規あ</a>
-                <a class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal" href="#">検索</a>
+        <div class="col-sm-3 col-lg-2 bg-warning sidebar">
+
+            <li class="active"><a href="">料理</a></li>
+            <li><a href="">アクセス</a></li>
+            <li><a href="">皆様のご意見</a></li>
+            <li><a href="/questionnaire">アンケート</a></li>
+
+        </div>
+
+        <div class="col-sm-9 col-lg-10">
+            <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">検索条件</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form id="filter" method="get">
+                            <div class="modal-body">
+                                {{filter.form|crispy}}
+                            </div>
+                            <div class="modal-footer">
+                                <a class="btn btn-outline-secondary" data-dismiss="modal">戻る</a>
+                                <button type="submit" class="btn btn-outline-secondary" form="filter">検索い</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-
-    <div class="row" >
-        <div class="col-12">
-            {% include "./pagination.html" %}
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12">
-            <ul class="list-group">
-<p>{{ user.username}}でログイン中</p>
-
-                {% for item in item_list %}
-                <li class="list-group-item">
-                    <div class="row">
-                        <div class="col-3">
-                            <p>タグ</p>
-                        </div>
-                        <div class="col-9">
-
-  {% for tag in item.tag.all %}
-<a href="{% url 'accounts:tag' tag.pk %}">{{ tag}}</a>
-   {% endfor %}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3">
-                            <p>名前</p>
-                        </div>
-                        <div class="col-9">
-                            <p>{{ item.name }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3">
-                            <p>登録日</p>
-                        </div>
-                        <div class="col-9">
-                            <p>{{item.created_at|date:"Y/m/d G:i:s"}}</p>
-                        </div>
-                    </div>
-                     <div class="row">
-
-                        <div class="col-3">
-                            <p>画像</p>
-                        </div>
-                        <div class="col-50">
-                            {% if item.photo %}
-                            <p><img src="{{ item.photo.url }}"></p>
-                            {% endif %}
-                        </div>
-                    </div>
+            か
+            <!--<img src="{{ item.photo.url }}" width="20%">-->
 
 
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="float-right">
-                                <a class="btn btn-outline-secondary " href="{% url 'accounts:detail' item.pk %}">詳細</a>
-                                <a class="btn btn-outline-secondary " href="{% url 'accounts:update' item.pk %}">編集</a>
-                                <a class="btn btn-outline-secondary " href="{% url 'accounts:delete' item.pk %}">削除</a>
+            <div class="div class=col-sm-9 col-lg-10 main">
+                <a class="btn btn-secondary filtered" style="visibility:hidden" href="/?page=1">検索を解除</a>
+                <div class="float-right">
+                    <a class="btn btn-outline-secondary" href="{% url 'accounts:create' %}">新規あ</a>
+                    <a class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal" href="#">検索</a>
+                </div>
+            </div>
 
+            <div class="col-9 main">
+                {% include "./pagination.html" %}
+            </div>
+
+
+            <div class="div class=col-sm-9 col-lg-10 main">
+                <div class="list-group">
+                    <p>{{ user.username}}でログイン中</p>
+                    <p><a href="{% url 'logout' %}">Log out</a></p>
+
+                    {% for item in item_list %}
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-3">
+                                <p>タグ</p>
+                            </div>
+                            <div class="col-9">
+
+                                {% for tag in item.tag.all %}
+                                <a href="{% url 'accounts:tag' tag.pk %}">{{ tag}}</a>
+                                {% endfor %}
                             </div>
                         </div>
-                    </div>
-                </li>
-                {% empty %}
-                <li class="list-group-item">
-                    対象のデータがありません
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-    <div class="row" >
-        <div class="col-12">
-            <div class="float-right">
-                <a class="btn btn-outline-secondary" href="{% url 'accounts:create' %}">新規</a>
-                <a class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal" href="#">検索</a>
+                        <div class="row">
+                            <div class="col-3">
+                                <p>名前</p>
+                            </div>
+                            <div class="col-9">
+                                <p>{{ item.name }}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <p>登録日</p>
+                            </div>
+                            <div class="col-9">
+                                <p>{{item.created_at|date:"Y/m/d G:i:s"}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-3">
+                                <p>画像</p>
+                            </div>
+                            <div class="col-50">
+                                {% if item.photo %}
+                                <p><img src="{{ item.photo.url }}"></p>
+                                {% endif %}
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-9">
+                                <div class="float-right">
+                                    <a class="btn btn-outline-secondary "
+                                       href="{% url 'accounts:detail' item.pk %}">詳細</a>
+                                    <a class="btn btn-outline-secondary "
+                                       href="{% url 'accounts:update' item.pk %}">編集</a>
+                                    <a class="btn btn-outline-secondary "
+                                       href="{% url 'accounts:delete' item.pk %}">削除</a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    {% empty %}
+                    <li class="list-group-item">
+                        対象のデータがありません
+                    </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-9">
+                <div class="float-right">
+                    <a class="btn btn-outline-secondary" href="{% url 'accounts:create' %}">新規</a>
+                    <a class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal" href="#">検索</a>
+                </div>
             </div>
         </div>
     </div>
 </div>
-{% endblock %}
+            {% endblock %}

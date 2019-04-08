@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -20,7 +22,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ajpa(^zjt16zxs9x0%96ig3v5465@)lr@)2-v1z=#bw9_!@5v5'
+'''削除'''
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -126,9 +129,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = "/media/"
 
-LOGIN_URL = 'admin/login/'
-LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL='/accounts/login/'
+LOGIN_URL = 'login/'
+LOGIN_REDIRECT_URL = '/accounts'
+LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
+#環境変数を別ファイルに分けるために追加
+try:
+    from .local_settings import *
+except ImportError:
+    pass

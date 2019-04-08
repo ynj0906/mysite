@@ -16,6 +16,9 @@ from .filters import ItemFilter
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 #from django.views.generic import Createview
+import csv
+
+
 
 # Create your views here.
 class SignupView(CreateView):
@@ -26,10 +29,18 @@ class SignupView(CreateView):
 
 class Hello(View):
     def get(self,request):
+
+        with open("accounts/amazon.csv", "r", encoding="utf-8")as fb:
+            reader = csv.reader(fb)
+            for i in reader:
+                return
+
         context = {"message": "helloWorld"}
         times = datetime.now()
         time = {"time": times}
         return TemplateResponse(request, "hello.html", time)
+
+
 
 hello = Hello.as_view()
 
