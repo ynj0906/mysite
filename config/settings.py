@@ -11,10 +11,13 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-
-
+from . import local_settings
+from socket import gethostname
+from os import environ
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -22,7 +25,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-'''削除'''
+
+
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -136,7 +140,12 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
 #環境変数を別ファイルに分けるために追加
-try:
-    from .local_settings import *
-except ImportError:
-    pass
+
+
+
+HOSTNAME = gethostname()
+
+if 'DESKTOP' in HOSTNAME:
+    SECRET_KEY = local_settings.SECRET_KEY
+else:
+    SECRET_KEY = environ['SECRET_KEY']
