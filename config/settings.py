@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-from . import local_settings
+
 from socket import gethostname
 from os import environ
 
@@ -146,6 +146,7 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 HOSTNAME = gethostname()
 
 if 'DESKTOP' in HOSTNAME:
+    import local_settings
     SECRET_KEY = local_settings.SECRET_KEY
 else:
     SECRET_KEY = environ['SECRET_KEY']
